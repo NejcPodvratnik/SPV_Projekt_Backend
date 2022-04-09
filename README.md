@@ -32,30 +32,30 @@ Uporabimo ga pri prijavi.
 
 ## Storage
 
-1. GET  /storage
-Vrne podatke o vseh zalogah.
+1. GET  /storage \
+Vrne podatke o vseh zalogah.\
 
-2. GET /storage/:id 
-Vrne podatke o zalogi, ki je v lasti uporabnika s tem id-jem.
-Če ne obstaja vrne status 404 in sporočilo o napaki.
-Uporabimo ga kadar želimo pridobiti oz. prikazati zalogo prijavljenega uporabnika.
-Predvidevam da bo id prijavljenega uporabnika globalno shranjen v aplikaciji. In s tem id-jem boš lahko dostopal do uporabnikove zaloge.
+2. GET /storage/:id \
+Vrne podatke o zalogi, ki je v lasti uporabnika s tem id-jem.\
+Če ne obstaja vrne status 404 in sporočilo o napaki.\
+Uporabimo ga kadar želimo pridobiti oz. prikazati zalogo prijavljenega uporabnika.\
+Predvidevam da bo id prijavljenega uporabnika globalno shranjen v aplikaciji. In s tem id-jem boš lahko dostopal do uporabnikove zaloge.\
 
-3. PUT /storage/add/:id
-V zalogo, ki je v lasti uporabnika s tem id-jem, dodamo količino ene sestavine.
-V telo je treba vstaviti "ingredient_name" (to je ime sestavine) in "ingredient_size" (ki je v obliki "{število} {merska enota}")
-Vrne status 404 in sporočilo o napaki, če ne najde zaloge.
-Vrne status 400 in sporočilo o napaki, če število v "ingredient_size" ni pozitivno.
-Vrne status 200 in zalogo, če je sestavina bila uspešno dodana.
-Uporabimo kadar dodajamo sestavino v zalogo.
+3. PUT /storage/add/:id\
+V zalogo, ki je v lasti uporabnika s tem id-jem, dodamo količino ene sestavine.\
+V telo je treba vstaviti "ingredient_name" (to je ime sestavine) in "ingredient_size" (ki je v obliki "{število} {merska enota}")\
+Vrne status 404 in sporočilo o napaki, če ne najde zaloge.\
+Vrne status 400 in sporočilo o napaki, če število v "ingredient_size" ni pozitivno.\
+Vrne status 200 in zalogo, če je sestavina bila uspešno dodana.\
+Uporabimo kadar dodajamo sestavino v zalogo.\
 
-4. PUT /storage/reduce_manual/:id
-V zalogo, ki je v lasti uporabnika s tem id-jem, zmanjšamo količino ene sestavine.
-V telo je treba vstaviti "ingredient_name" (to je ime sestavine) in "ingredient_size" (ki je v obliki "{število} {merska enota}")
-Vrne status 404 in sporočilo o napaki, če ne najde zaloge.
-Vrne status 400 in sporočilo o napaki, če število v "ingredient_size" ni pozitivno ali če je razlika negativna.
-Vrne status 200 in zalogo, če je sestavina bila uspešno zmanjšana.
-Uporabimo kadar ročno zmanjšamo količino sestavine v zalogi. Ne vem če boš lahko v aplikaciji ročno odstranjeval sestavine, ampak sem vseeno za vsak slućaj napisal.
+4. PUT /storage/reduce_manual/:id\
+V zalogo, ki je v lasti uporabnika s tem id-jem, zmanjšamo količino ene sestavine.\
+V telo je treba vstaviti "ingredient_name" (to je ime sestavine) in "ingredient_size" (ki je v obliki "{število} {merska enota}")\
+Vrne status 404 in sporočilo o napaki, če ne najde zaloge.\
+Vrne status 400 in sporočilo o napaki, če število v "ingredient_size" ni pozitivno ali če je razlika negativna.\
+Vrne status 200 in zalogo, če je sestavina bila uspešno zmanjšana.\
+Uporabimo kadar ročno zmanjšamo količino sestavine v zalogi. Ne vem če boš lahko v aplikaciji ročno odstranjeval sestavine, ampak sem vseeno za vsak slućaj napisal.\
 
 
 ## Recipe
