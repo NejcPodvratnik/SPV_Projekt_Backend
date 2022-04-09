@@ -20,6 +20,20 @@ module.exports = {
     },
 
     /**
+     * userController.show()
+     */
+    show: function (req, res) {
+        var id = req.params.id;
+        UserModel.findOne({_id: id}, function (err, user) {
+            if (err) 
+                return res.status(500).json({ message: 'Error when getting user' });
+            if (!user)
+                return res.status(404).json({ message: 'No such user' });
+            return res.json(user);
+        });
+    },
+
+    /**
      * userController.create()
      */
     create: function (req, res) {
@@ -51,7 +65,7 @@ module.exports = {
                 });
             }
             else
-                return res.status(500).json({ message: 'User already exists.' });
+                return res.status(400).json({ message: 'User already exists.' });
         });
     },
 
