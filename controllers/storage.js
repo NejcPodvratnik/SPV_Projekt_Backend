@@ -1,4 +1,5 @@
 var StorageModel = require('../models/storage.js');
+var RecipeModel = require('../models/recipe.js');
 
 /**
  * storageController.js
@@ -99,6 +100,47 @@ module.exports = {
                 if (err) 
                     return res.status(500).json({ message: 'Error when updating storage.' });
                 return res.status(200).json(storage);
+            });
+        });
+    },
+    reduce_recipe: function (req, res) {
+        var user_id = req.params.user_id;
+        var recipe_id = req.params.recipe_id;
+
+        StorageModel.findOne({user_id: user_id}, function (err, storage) {
+            if (err) 
+                return res.status(500).json({ message: 'Error when getting storage' });
+            if (!storage)
+                return res.status(404).json({ message: 'No such storage' });
+
+            RecipeModel.findOne({_id: recipe_id}, function (err, recipe) {
+                if (err) 
+                    return res.status(500).json({ message: 'Error when getting recipe' });
+                if (!recipe)
+                    return res.status(404).json({ message: 'No such recipe' });
+    
+                for (let [key, value] of recipe.ingredients)
+                {
+                    if(storage.ingredients.get(key) === undefined)
+                        return res.status(400).json({ message: 'Missing ingredient: ' + key });
+
+                    ingredient_storage = parseInt(storage.ingredients.get(key).split(" ")[0])
+                    ingredient_recipe = parseInt(value.split(" ")[0])
+                    ingredient_unit =  value.substr(value.indexOf(" ") + 1);;
+
+                    if(ingredient_storage < ingredient_recipe)
+                        return res.status(400).json({ message: 'Not enough ' + key });
+                    else if(ingredient_storage - ingredient_recipe === 0)
+                        storage.ingredients.delete(key);
+                    else
+                        storage.ingredients.set(key,ingredient_storage - ingredient_recipe + " " + ingredient_unit);
+                }
+
+                storage.save(function (err, storage) {
+                    if (err) 
+                        return res.status(500).json({ message: 'Error when updating storage.' });
+                    return res.status(200).json(storage);
+                });
             });
         });
     }

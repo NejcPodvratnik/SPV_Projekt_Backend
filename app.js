@@ -7,6 +7,7 @@ var cors = require('cors')
 
 var usersRouter = require('./routes/users');
 var storageRouter = require('./routes/storage');
+var recipeRouter = require('./routes/recipe');
 
 
 var mongoose = require('mongoose');
@@ -50,6 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
 app.use('/storage', storageRouter);
+app.use('/recipe', recipeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

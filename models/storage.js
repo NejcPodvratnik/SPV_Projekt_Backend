@@ -6,5 +6,5 @@ var storageSchema = new Schema({
 	'ingredients' : Map
 });
 
-var User =  mongoose.model('storage', storageSchema);
-module.exports = User;
+var Storage =  mongoose.model('storage', storageSchema);
+module.exports = Storage;

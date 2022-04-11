@@ -18,6 +18,7 @@ router.get('/:id', storageController.show);
  */
 router.put('/add/:id', storageController.add);
 router.put('/reduce_manual/:id', storageController.reduce_manual);
+router.put('/reduce_recipe/:user_id/:recipe_id', storageController.reduce_recipe);
 
 
 module.exports = router;
