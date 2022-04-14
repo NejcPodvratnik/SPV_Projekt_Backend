@@ -81,6 +81,7 @@ module.exports = {
 			name : req.body.name,
             instructions : req.body.instructions,
             ingredients : new Map(Object.entries(req.body.ingredients)),
+            preparation : req.body.preparation,
             image_path : 'images/' + req.file.filename
         });
 

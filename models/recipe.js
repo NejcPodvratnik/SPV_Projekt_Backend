@@ -5,6 +5,7 @@ var recipeSchema = new Schema({
     'name' : String,
 	'ingredients' : Map,
     'instructions' : String,
+    'preparation' : Number, 
     'image_path' : String
 });
 
